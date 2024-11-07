@@ -1,12 +1,21 @@
 import Image from "next/image";
 import { Button } from "../_components/ui/button";
+import { SignInButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+// import logo from "/public/logo.svg";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const { userId } = await auth();
+
+  if (userId) {
+    redirect("/");
+  }
   return (
     <div className="grid h-full sm:grid-cols-2">
       <div className="m-auto flex max-w-[467px] flex-col justify-center">
         <Image
-          src="/logo.svg"
+          src={"/logo.svg"}
           alt="logo"
           width={173}
           height={39}
@@ -19,16 +28,18 @@ const LoginPage = () => {
           facilitando o controle do seu orçamento.
         </p>
 
-        <Button variant={"outline"}>
-          <Image
-            src="/google.svg"
-            width={20}
-            height={20}
-            alt="google icon"
-            className="mr-2"
-          />
-          Entrar com Google
-        </Button>
+        <SignInButton>
+          <Button variant={"outline"}>
+            <Image
+              src="/google.svg"
+              width={20}
+              height={20}
+              alt="google icon"
+              className="mr-2"
+            />
+            Entrar com Google
+          </Button>
+        </SignInButton>
       </div>
       <div className="relative">
         <Image src="/login.png" alt="login" fill className="object-cover" />
