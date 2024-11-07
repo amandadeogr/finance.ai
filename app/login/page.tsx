@@ -12,8 +12,8 @@ const LoginPage = async () => {
     redirect("/");
   }
   return (
-    <div className="grid h-full sm:grid-cols-2">
-      <div className="m-auto flex max-w-[467px] flex-col justify-center">
+    <main className="grid h-full sm:grid-cols-2">
+      <div className="m-auto flex max-w-[467px] flex-col justify-center sm:p-5">
         <Image
           src={"/logo.svg"}
           alt="logo"
@@ -41,10 +41,10 @@ const LoginPage = async () => {
           </Button>
         </SignInButton>
       </div>
-      <div className="relative">
+      <div className="relative hidden sm:block">
         <Image src="/login.png" alt="login" fill className="object-cover" />
       </div>
-    </div>
+    </main>
   );
 };
 
