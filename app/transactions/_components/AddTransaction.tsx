@@ -1,6 +1,5 @@
 "use client";
-import { ArrowDownUpIcon } from "lucide-react";
-import { Button } from "../_components/ui/button";
+import { Button } from "@/app/_components/ui/button";
 import {
   Sheet,
   SheetClose,
@@ -9,7 +8,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../_components/ui/sheet";
+} from "@/app/_components/ui/sheet";
+import { ArrowDownUpIcon } from "lucide-react";
 
 const AddTransaction = () => {
   return (
@@ -34,7 +34,7 @@ const AddTransaction = () => {
             <input id="username" value="@peduarte" className="col-span-3" />
           </div>
         </div>
-        <SheetFooter>
+        <SheetFooter className="justify-end">
           <SheetClose asChild>
             <Button type="submit">Salvar Transação</Button>
           </SheetClose>
