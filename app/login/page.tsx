@@ -3,7 +3,6 @@ import { Button } from "../_components/ui/button";
 import { SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-// import logo from "/public/logo.svg";
 
 const LoginPage = async () => {
   const { userId } = await auth();
