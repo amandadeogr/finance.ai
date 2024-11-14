@@ -103,12 +103,16 @@ const AddTransaction = () => {
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Adicionar Transação</DialogTitle>
-          <DialogDescription>Insira as informações abaixo</DialogDescription>
+        <DialogHeader className="items-center">
+          <DialogTitle className="text-xl font-bold">
+            Adicionar Transação
+          </DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            Insira as informações abaixo
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-5">
             <FormField
               control={form.control}
               name="name"
@@ -242,14 +246,20 @@ const AddTransaction = () => {
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <DialogFooter className="w-full justify-between">
               <DialogClose asChild>
-                <Button type="button" variant={"outline"}>
+                <Button
+                  type="button"
+                  variant={"outline"}
+                  className="w-full rounded-xl"
+                >
                   Cancelar
                 </Button>
               </DialogClose>
 
-              <Button type="submit">Adicionar</Button>
+              <Button type="submit" className="w-full rounded-xl">
+                Adicionar
+              </Button>
             </DialogFooter>
           </form>
         </Form>
