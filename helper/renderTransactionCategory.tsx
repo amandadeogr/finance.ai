@@ -1,19 +1,9 @@
 "use client";
 
-const TRANSACTION_CATEGORY = {
-  EDUCATION: "Educação",
-  FOOD: "Alimentação",
-  HEALTH: "Saúde",
-  ENTERTAINMENT: "Entretenimento",
-  HOUSING: "Moradia",
-  OTHER: "Outros",
-  SALARY: "Salário",
-  TRANSPORTATION: "Transporte",
-  UTILITY: "Utilidade",
-};
+import { TRANSACTION_CATEGORY_LABELS } from "@/app/_constants/transactions";
 
 export const renderTransactionCategory = (
-  category: keyof typeof TRANSACTION_CATEGORY,
+  category: keyof typeof TRANSACTION_CATEGORY_LABELS,
 ) => {
-  return TRANSACTION_CATEGORY[category];
+  return TRANSACTION_CATEGORY_LABELS[category];
 };

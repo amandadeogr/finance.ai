@@ -1,16 +1,9 @@
 "use client";
-const TRANSACTION_PAYMENT_METHODS = {
-  CASH: "Dinheiro",
-  CREDIT_CARD: "Cartão de Crédito",
-  DEBIT_CARD: "Cartão de Débito",
-  BANK_SLIP: "Boleto",
-  BANK_TRANSFER: "Transferência Bancária",
-  OTHER: "Outros",
-  PIX: "PIX",
-};
+
+import { TRANSACTION_PAYMENT_METHOD_LABELS } from "@/app/_constants/transactions";
 
 export const renderTransactionPaymentMethod = (
-  transaction: keyof typeof TRANSACTION_PAYMENT_METHODS,
+  transaction: keyof typeof TRANSACTION_PAYMENT_METHOD_LABELS,
 ) => {
-  return TRANSACTION_PAYMENT_METHODS[transaction];
+  return TRANSACTION_PAYMENT_METHOD_LABELS[transaction];
 };
