@@ -1,5 +1,5 @@
 "use client";
-import { ArrowDownUpIcon } from "lucide-react";
+import { ArrowDownUpIcon, EditIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -43,6 +43,14 @@ import {
 } from "../_constants/transactions";
 import DatePicker from "./ui/date-picker";
 import addTransaction from "../_actions/add-transaction";
+import { useState } from "react";
+import { useToast } from "../_hooks/use-toast";
+
+interface UpsertTransactionDialogProps {
+  defaultValues?: FormSchema;
+  transactionId?: string;
+  isEdit?: boolean;
+}
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
@@ -67,10 +75,16 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-const AddTransaction = () => {
+const UpsertTransactionDialog = ({
+  defaultValues,
+  transactionId,
+  isEdit,
+}: UpsertTransactionDialogProps) => {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: defaultValues ?? {
       name: "",
       type: TransactionType.EXPENSE,
       amount: 0,
@@ -82,30 +96,54 @@ const AddTransaction = () => {
 
   const onSubmit = async (data: FormSchema) => {
     try {
-      await addTransaction(data);
+      await addTransaction({ ...data, id: transactionId });
+      setDialogIsOpen(false);
+      form.reset();
+      toast({
+        title: isEdit
+          ? "Transação atualizada com sucesso!"
+          : "Transação adicionada com sucesso!",
+        variant: "default",
+        className: "bg-success text-white",
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
+  const { toast } = useToast();
+
+  const isUpdate = Boolean(transactionId);
+
   return (
     <Dialog
+      open={dialogIsOpen}
       onOpenChange={(open) => {
+        setDialogIsOpen(open);
         if (!open) {
           form.reset();
         }
       }}
     >
       <DialogTrigger asChild>
-        <Button variant={"default"} className="rounded-full text-sm font-bold">
-          Adicionar Transação
-          <ArrowDownUpIcon size={16} />
-        </Button>
+        {isEdit ? (
+          <Button variant={"ghost"}>
+            <EditIcon size={20} />
+          </Button>
+        ) : (
+          <Button
+            variant={"default"}
+            className="rounded-full text-sm font-bold"
+          >
+            Adicionar Transação
+            <ArrowDownUpIcon size={16} />
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="items-center">
           <DialogTitle className="text-xl font-bold">
-            Adicionar Transação
+            {isUpdate ? "Editar" : "Adicionar"} Transação
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
             Insira as informações abaixo
@@ -138,10 +176,11 @@ const AddTransaction = () => {
                   <FormLabel>Valor</FormLabel>
                   <FormControl>
                     <MoneyInput
-                      placeholder="Digite o valor da transação"
-                      onValueChange={({ floatValue }) => {
-                        field.onChange(floatValue);
-                      }}
+                      placeholder="Digite o valor..."
+                      value={field.value}
+                      onValueChange={({ floatValue }) =>
+                        field.onChange(floatValue)
+                      }
                       onBlur={field.onBlur}
                       disabled={field.disabled}
                     />
@@ -258,7 +297,7 @@ const AddTransaction = () => {
               </DialogClose>
 
               <Button type="submit" className="w-full rounded-xl">
-                Adicionar
+                {isUpdate ? "Atualizar" : "Adicionar"}
               </Button>
             </DialogFooter>
           </form>
@@ -268,4 +307,4 @@ const AddTransaction = () => {
   );
 };
 
-export default AddTransaction;
+export default UpsertTransactionDialog;

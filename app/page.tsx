@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -8,11 +7,7 @@ const HomePage = async () => {
     redirect("/login");
   }
 
-  return (
-    <main>
-      <UserButton />
-    </main>
-  );
+  return <main>olá mundo!</main>;
 };
 
 export default HomePage;
