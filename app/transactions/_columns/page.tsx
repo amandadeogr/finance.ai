@@ -1,7 +1,7 @@
 "use client";
-import { renderTransactionCategory } from "@/helper/renderTransactionCategory";
-import { renderTransactionPaymentMethod } from "@/helper/renderTransactionPaymentMethod";
-import renderBadge from "@/helper/renderTransactionTypeBadge";
+import { renderTransactionCategory } from "@/app/transactions/helper/renderTransactionCategory";
+import { renderTransactionPaymentMethod } from "@/app/transactions/helper/renderTransactionPaymentMethod";
+import renderBadge from "@/app/transactions/helper/renderTransactionTypeBadge";
 import { Transaction } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import EditTransaction from "../_components/EditTransaction";
@@ -57,12 +57,12 @@ export const transactionsColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "actions",
     header: "Ações",
-    cell: () => {
+    cell: ({ row: { original: transaction } }) => {
       return (
         <div>
-          <EditTransaction />
+          <EditTransaction transaction={transaction} />
 
-          <DeleteTransaction />
+          <DeleteTransaction transaction={transaction} />
         </div>
       );
     },
