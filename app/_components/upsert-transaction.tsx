@@ -44,6 +44,7 @@ import {
 import DatePicker from "./ui/date-picker";
 import addTransaction from "../_actions/add-transaction";
 import { useState } from "react";
+import { useToast } from "../_hooks/use-toast";
 
 interface UpsertTransactionDialogProps {
   defaultValues?: FormSchema;
@@ -98,10 +99,19 @@ const UpsertTransactionDialog = ({
       await addTransaction({ ...data, id: transactionId });
       setDialogIsOpen(false);
       form.reset();
+      toast({
+        title: isEdit
+          ? "Transação atualizada com sucesso!"
+          : "Transação adicionada com sucesso!",
+        variant: "default",
+        className: "bg-success text-white",
+      });
     } catch (error) {
       console.error(error);
     }
   };
+
+  const { toast } = useToast();
 
   const isUpdate = Boolean(transactionId);
 
@@ -166,11 +176,11 @@ const UpsertTransactionDialog = ({
                   <FormLabel>Valor</FormLabel>
                   <FormControl>
                     <MoneyInput
-                      placeholder="Digite o valor da transação"
+                      placeholder="Digite o valor..."
                       value={field.value}
-                      onValueChange={({ floatValue }) => {
-                        field.onChange(floatValue);
-                      }}
+                      onValueChange={({ floatValue }) =>
+                        field.onChange(floatValue)
+                      }
                       onBlur={field.onBlur}
                       disabled={field.disabled}
                     />
