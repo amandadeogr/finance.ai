@@ -1,7 +1,7 @@
 import { db } from "../_lib/prisma";
 import { DataTable } from "../_components/ui/data-table";
 import { transactionsColumns } from "./_columns/page";
-import AddTransaction from "./_components/AddTransaction";
+import AddTransaction from "../_components/add-transaction";
 
 const TransactionsPage = async () => {
   const transactions = await db.transaction.findMany({});
