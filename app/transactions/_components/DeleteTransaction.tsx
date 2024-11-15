@@ -48,7 +48,7 @@ const DeleteTransaction = ({ transaction }: DeleteTransactionProps) => {
           <TrashIcon size={20} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-96">
+      <DialogContent className="max-w-96">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
             <XCircleIcon size={18} className="fill-danger text-black" />
@@ -58,7 +58,7 @@ const DeleteTransaction = ({ transaction }: DeleteTransactionProps) => {
             Uma vez deletada não poderá recuperá-la.
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="justify-end">
+        <DialogFooter className="justify-end gap-2 sm:gap-0">
           <DialogClose asChild>
             <Button variant={"outline"}>Cancelar</Button>
           </DialogClose>

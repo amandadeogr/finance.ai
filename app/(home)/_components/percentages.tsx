@@ -24,16 +24,16 @@ const Percentages = ({
   expensesTotal,
 }: PercentagesProps) => {
   return (
-    <Card className="w-1/2">
+    <Card className="max-h-[550px] sm:w-1/2">
       <CardContent className="flex flex-col items-center">
-        <CardHeader className="w-full border-b py-4 text-start">
+        <CardHeader className="w-full border-b py-4 text-center sm:text-start">
           <CardTitle className="text-lg font-bold">Porcentagens</CardTitle>
         </CardHeader>
         <PercentagesPieChart
           {...{ depositsTotal, investmentsTotal, expensesTotal }}
         />
 
-        <div className="w-1/2 space-y-6">
+        <div className="w-full space-y-6 sm:w-1/2">
           <PercentageItem
             icon={<TrendingUpIcon size={16} className="text-primary" />}
             title="Receita"
