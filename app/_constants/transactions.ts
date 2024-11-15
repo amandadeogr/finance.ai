@@ -4,6 +4,23 @@ import {
   TransactionType,
 } from "@prisma/client";
 
+import { CreditCardIcon } from "lucide-react";
+import { ScanBarcodeIcon } from "lucide-react";
+import { LandmarkIcon } from "lucide-react";
+import { BanknoteIcon } from "lucide-react";
+import { ComponentIcon } from "lucide-react";
+import { ArrowLeftRightIcon } from "lucide-react";
+
+export const TRANSACTION_PAYMENT_METHOD_ICONS = {
+  [TransactionPaymentMethod.CREDIT_CARD]: CreditCardIcon,
+  [TransactionPaymentMethod.DEBIT_CARD]: CreditCardIcon,
+  [TransactionPaymentMethod.BANK_TRANSFER]: LandmarkIcon,
+  [TransactionPaymentMethod.BANK_SLIP]: ScanBarcodeIcon,
+  [TransactionPaymentMethod.CASH]: BanknoteIcon,
+  [TransactionPaymentMethod.PIX]: ComponentIcon,
+  [TransactionPaymentMethod.OTHER]: ArrowLeftRightIcon,
+};
+
 export const TRANSACTION_CATEGORY_LABELS = {
   EDUCATION: "Educação",
   ENTERTAINMENT: "Entretenimento",
