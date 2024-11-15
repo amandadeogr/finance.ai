@@ -18,9 +18,9 @@ const TransactionsPage = async () => {
 
   return (
     <main>
-      <div className="header my-6 flex w-full items-center justify-between">
+      <div className="header sticky top-0 z-50 flex w-full items-center justify-between bg-background py-6">
         <h2 className="text-2xl font-bold">Transações</h2>
-        <UpsertTransactionDialog />
+        <UpsertTransactionDialog label="Incluir" />
       </div>
 
       <DataTable columns={transactionsColumns} data={transactions} />
