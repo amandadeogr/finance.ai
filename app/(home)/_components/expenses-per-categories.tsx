@@ -13,10 +13,10 @@ const ExpensesPerCategories = ({
   expensesPerCategory,
 }: ExpensesPerCategoriesProps) => {
   return (
-    <ScrollArea className="max-h-96 w-1/2 rounded-3xl border">
+    <ScrollArea className="max-h-[550px] rounded-3xl border sm:w-1/2">
       <CardContent>
-        <CardHeader className="sticky top-0 flex flex-row items-center justify-between border-b bg-background px-0 py-4">
-          <CardTitle className="text-lg font-bold">
+        <CardHeader className="sticky top-0 z-50 border-b bg-background px-0 py-4">
+          <CardTitle className="text-center text-lg font-bold sm:text-start">
             Despesas por Categoria
           </CardTitle>
         </CardHeader>

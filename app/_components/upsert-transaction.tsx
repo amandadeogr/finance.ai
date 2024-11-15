@@ -1,5 +1,5 @@
 "use client";
-import { ArrowDownUpIcon, EditIcon } from "lucide-react";
+import { ArrowDownUpIcon, EditIcon, PlusCircleIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -45,11 +45,13 @@ import DatePicker from "./ui/date-picker";
 import addTransaction from "../_actions/add-transaction";
 import { useState } from "react";
 import { useToast } from "../_hooks/use-toast";
+import { useMediaQuery } from "react-responsive";
 
 interface UpsertTransactionDialogProps {
   defaultValues?: FormSchema;
   transactionId?: string;
   isEdit?: boolean;
+  label?: string;
 }
 
 const formSchema = z.object({
@@ -79,8 +81,10 @@ const UpsertTransactionDialog = ({
   defaultValues,
   transactionId,
   isEdit,
+  label,
 }: UpsertTransactionDialogProps) => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 });
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -130,13 +134,21 @@ const UpsertTransactionDialog = ({
           <Button variant={"ghost"}>
             <EditIcon size={20} />
           </Button>
-        ) : (
+        ) : !isSmallScreen ? (
           <Button
             variant={"default"}
             className="rounded-full text-sm font-bold"
           >
             Adicionar Transação
             <ArrowDownUpIcon size={16} />
+          </Button>
+        ) : (
+          <Button
+            variant={"default"}
+            className="rounded-full text-[10px] font-bold"
+          >
+            {label}
+            <PlusCircleIcon size={24} />
           </Button>
         )}
       </DialogTrigger>
@@ -285,7 +297,7 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-            <DialogFooter className="w-full justify-between">
+            <DialogFooter className="w-full justify-between gap-2 sm:gap-0">
               <DialogClose asChild>
                 <Button
                   type="button"

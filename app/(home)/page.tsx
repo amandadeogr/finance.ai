@@ -5,8 +5,8 @@ import { isMatch } from "date-fns";
 import getDashboard from "../_data/get-dashboard";
 import SummaryCard from "./_components/summary-card";
 import LastTransactions from "./_components/last-transactions";
-import Percentages from "./_components/percentages";
 import ExpensesPerCategories from "./_components/expenses-per-categories";
+import Percentages from "./_components/percentages";
 
 interface HomeProps {
   searchParams: {
@@ -33,15 +33,15 @@ const HomePage = async ({ searchParams: { month } }: HomeProps) => {
         <MonthSelect />
       </div>
 
-      <div className="flex gap-10">
-        <div className="w-2/3 space-y-6">
+      <div className="flex flex-col gap-2 sm:flex-row sm:gap-10">
+        <div className="mb-5 w-full space-y-6 sm:w-2/3">
           <SummaryCard
             size="large"
             type="total"
             label="Saldo"
             amount={dashboard.balance}
           />
-          <div className="flex w-full items-center justify-between gap-6">
+          <div className="flex w-full flex-col items-center justify-between gap-6 sm:flex-row">
             <SummaryCard
               size="small"
               type="deposity"
@@ -62,7 +62,7 @@ const HomePage = async ({ searchParams: { month } }: HomeProps) => {
             />
           </div>
 
-          <div className="flex justify-between gap-6">
+          <div className="flex flex-col justify-between gap-6 sm:flex-row">
             <Percentages {...dashboard} />
             <ExpensesPerCategories
               expensesPerCategory={dashboard.totalExpensePerCategory}

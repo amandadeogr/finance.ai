@@ -54,7 +54,8 @@ const PercentagesPieChart = ({
   return (
     <ChartContainer
       config={chartConfig}
-      className="mx-auto aspect-square max-h-[250px]"
+      className="my-5 aspect-square max-h-[250px] sm:mx-auto"
+      style={{ width: "250px", height: "250px" }}
     >
       <PieChart>
         <ChartTooltip

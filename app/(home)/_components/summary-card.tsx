@@ -22,7 +22,9 @@ const SummaryCard = ({ size, type, label, amount }: SummaryCardProps) => {
     <Card
       className={`w-full ${size !== "small" ? "bg-[#161716] py-5" : "py-2"}`}
     >
-      <CardContent className={`flex items-end justify-between`}>
+      <CardContent
+        className={`flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-0`}
+      >
         <CardHeader className="grid items-center justify-start py-0">
           <CardDescription className="flex items-center gap-3">
             <CardIcon type={type} />
@@ -34,9 +36,9 @@ const SummaryCard = ({ size, type, label, amount }: SummaryCardProps) => {
             {formatCurrency(amount)}
           </CardTitle>
         </CardHeader>
-        <div className="">
-          {size === "large" && <UpsertTransactionDialog />}
-        </div>
+        {size === "large" && (
+          <UpsertTransactionDialog label="Adicionar Transação" />
+        )}
       </CardContent>
     </Card>
   );
