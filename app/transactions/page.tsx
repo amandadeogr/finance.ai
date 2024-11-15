@@ -1,6 +1,6 @@
 import { db } from "../_lib/prisma";
 import { DataTable } from "../_components/ui/data-table";
-import { transactionsColumns } from "./_columns/page";
+import { transactionsColumns } from "./_columns/transactionsColumns";
 import UpsertTransactionDialog from "../_components/upsert-transaction";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
