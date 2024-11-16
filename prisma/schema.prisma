@@ -42,6 +42,8 @@ enum TransactionCategory {
   SALARY
   EDUCATION
   OTHER
+  CREDIT_CARD
+  LOAN
 }
 
 enum TransactionPaymentMethod {
