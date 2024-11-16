@@ -31,6 +31,8 @@ export const TRANSACTION_CATEGORY_LABELS = {
   SALARY: "Salário",
   TRANSPORTATION: "Transporte",
   UTILITY: "Utilidades",
+  LOAN: "Empréstimo",
+  CREDIT_CARD: "Cartão de Crédito",
 };
 export const TRANSACTION_PAYMENT_METHOD_LABELS = {
   BANK_TRANSFER: "Transferência Bancária",
@@ -125,5 +127,13 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
   {
     value: TransactionCategory.UTILITY,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.UTILITY],
+  },
+  {
+    value: TransactionCategory.LOAN,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.LOAN],
+  },
+  {
+    value: TransactionCategory.CREDIT_CARD,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.CREDIT_CARD],
   },
 ];
